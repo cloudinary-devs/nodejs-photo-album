@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + Lit</title>
+    <link rel="stylesheet" href="./src/index.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <script type="module" src="/src/upload-large.js"></script>
+    <script type="module" src="/src/my-navbar.js"></script>
+  </head>
+  <body>
+    <my-navbar></my-navbar>
+    <main>
+      <h1>Node.js sample app</h1>
+      <section>
+        <large-file-uploader
+          uploadUrl="http://localhost:3000/upload_large_from_browser_chunked"
+        ></large-file-uploader>
+      </section>
+    </main>
+
+    <script></script>
+  </body>
+</html>

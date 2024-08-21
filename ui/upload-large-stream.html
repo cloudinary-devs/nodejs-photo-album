@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + Lit</title>
+    <link rel="stylesheet" href="./src/index.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <script type="module" src="/src/my-navbar.js"></script>
+    <script type="module" defer src="/src/upload-large-stream.js"></script>
+  </head>
+  <body>
+    <my-navbar></my-navbar>
+    <main>
+      <p>Upload a file pls</p>
+      <form id="uploadForm" enctype="multipart/form-data">
+        <input type="file" name="video" id="video" accept="video/*" />
+        <button type="submit">Upload Image</button>
+      </form>
+      <section id="uploadResultSection">
+        <div id="uploadResult">
+          <!-- <img
+            src="https://res.cloudinary.com/tamas-demo/image/upload/w_400/woman"
+          /> -->
+        </div>
+      </section>
+    </main>
+
+    <script></script>
+  </body>
+</html>

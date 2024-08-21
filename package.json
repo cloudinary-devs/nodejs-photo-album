@@ -1,0 +1,23 @@
+{
+  "name": "nodejs-pa",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node --watch --env-file='.env.local' app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "type": "module",
+  "dependencies": {
+    "@fastify/cors": "^9.0.1",
+    "@fastify/multipart": "^8.3.0",
+    "@fastify/websocket": "^10.0.1",
+    "cloudinary": "^2.2.0",
+    "fastify": "^4.28.1",
+    "fastify-websocket": "^4.3.0",
+    "lit": "^3.1.4"
+  }
+}

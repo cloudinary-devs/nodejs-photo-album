@@ -1,0 +1,34 @@
+body {
+  font-family: 'Nunito', sans-serif;
+  background-color: #f3e5f5;
+  color: #1c1c1c;
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  padding: 2rem;
+  text-align: center;
+}
+
+#uploadResultSection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  margin: 10px;
+}
+
+#uploadResult {
+  padding: 10px;
+  width: 400px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #d1dbfa;
+  border-radius: 5px;
+}
+
+#uploadResult img {
+  border-radius: 5px;
+}
