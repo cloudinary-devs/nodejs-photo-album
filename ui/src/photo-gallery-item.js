@@ -13,11 +13,11 @@ class PhotoGalleryItem extends LitElement {
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       background-color: #fff;
       border-radius: 5px;
+      width: 400px;
+      height: 400px;
     }
 
     img {
-      width: 100%;
-      height: auto;
       border-radius: 5px;
     }
   `;
@@ -29,7 +29,9 @@ class PhotoGalleryItem extends LitElement {
   }
 
   render() {
-    return html` <img src="${this.src}" alt="${this.alt}" /> `;
+    return html`
+      <img src="${this.src}" alt="${this.alt}" width="400" height="400" />
+    `;
   }
 }
 

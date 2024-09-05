@@ -3,7 +3,13 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "node --watch --env-file='.env.local' app.js",
+    "start": "(node  app.js & npm run dev)",
+    "start:dev": "(node --watch app.js & npm run dev)",
+    "server": "node --watch app.js",
+    "ui": "cd ui && vite",
+    "dev": "cd ui && vite",
+    "build": "cd ui && vite build",
+    "preview": "cd ui && vite preview",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -16,8 +22,12 @@
     "@fastify/multipart": "^8.3.0",
     "@fastify/websocket": "^10.0.1",
     "cloudinary": "^2.2.0",
+    "dotenv": "^16.4.5",
     "fastify": "^4.28.1",
     "fastify-websocket": "^4.3.0",
     "lit": "^3.1.4"
+  },
+  "devDependencies": {
+    "vite": "^5.0.8"
   }
 }

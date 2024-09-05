@@ -10,23 +10,23 @@
       href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap"
       rel="stylesheet"
     />
-    <script type="module" src="/src/my-navbar.js"></script>
-    <script type="module" defer src="/src/upload-large-stream.js"></script>
+    <script type="module" src="src/my-navbar.js"></script>
+    <script type="module" defer src="src/upload-large-stream.js"></script>
   </head>
   <body>
     <my-navbar></my-navbar>
     <main>
-      <p>Upload a file pls</p>
+      <p>
+        Here you can upload a video to your Cloudinary account (images are also
+        supported but for demonstration purposes please use a video). The
+        uploaded videos will appear under the <a href="/gallery">Gallery</a>.
+      </p>
       <form id="uploadForm" enctype="multipart/form-data">
         <input type="file" name="video" id="video" accept="video/*" />
-        <button type="submit">Upload Image</button>
+        <button type="submit">Upload Video</button>
       </form>
       <section id="uploadResultSection">
-        <div id="uploadResult">
-          <!-- <img
-            src="https://res.cloudinary.com/tamas-demo/image/upload/w_400/woman"
-          /> -->
-        </div>
+        <div id="uploadResult"></div>
       </section>
     </main>
 

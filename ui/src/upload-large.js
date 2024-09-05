@@ -3,27 +3,7 @@ import { LitElement, html, css } from 'lit';
 class LargeFileUploader extends LitElement {
   static styles = css`
     .uploader {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      border: 2px dashed #ccc;
-      padding: 20px;
-      width: 300px;
-    }
-    input[type='file'] {
-      display: none;
-    }
-    button {
-      margin-top: 20px;
-      padding: 10px 20px;
-      background-color: #4caf50;
-      color: white;
-      border: none;
-      cursor: pointer;
-      font-size: 16px;
-    }
-    button:hover {
-      background-color: #45a049;
+      margin-bottom: 20px;
     }
     progress {
       width: 100%;
@@ -31,7 +11,16 @@ class LargeFileUploader extends LitElement {
     }
     .status {
       margin-top: 10px;
-      font-style: italic;
+      color: #555;
+    }
+    #uploadResultSection {
+      display: none;
+    }
+    /* Style for both video and image elements */
+    video,
+    img {
+      width: 400px;
+      margin-top: 10px;
     }
   `;
 
@@ -40,14 +29,16 @@ class LargeFileUploader extends LitElement {
     uploadId: { type: String },
     progress: { type: Number },
     status: { type: String },
+    cloudinaryUrl: { type: String },
   };
 
   constructor() {
     super();
-    this.uploadUrl = 'http://localhost:3000/upload_large_from_browser_chunked';
+    this.uploadUrl = 'http://localhost:3000/upload-large-from-browser-chunked';
     this.uploadId = '';
     this.progress = 0;
     this.status = 'Ready to upload';
+    this.cloudinaryUrl = '';
   }
 
   handleFileSelect(e) {
@@ -90,7 +81,6 @@ class LargeFileUploader extends LitElement {
           this.progress = ((chunkIndex + 1) / totalChunks) * 100;
 
           if (result.url) {
-            // Final chunk, Cloudinary upload completed
             this.cloudinaryUrl = result.url;
             this.status = 'Upload complete! File available on Cloudinary.';
           } else {
@@ -123,21 +113,45 @@ class LargeFileUploader extends LitElement {
     }
   }
 
+  renderUploadResult() {
+    if (this.cloudinaryUrl.includes('/video/')) {
+      return html`<video controls src="${this.cloudinaryUrl}"></video>`;
+    } else if (this.cloudinaryUrl.includes('/image/')) {
+      return html`<img src="${this.cloudinaryUrl}" alt="Uploaded image" />`;
+    }
+    return html``;
+  }
+
   render() {
     return html`
-      <div class="uploader">
-        <label>
-          <button
-            @click="${() =>
-              this.shadowRoot.querySelector('input[type=file]').click()}"
-          >
-            Select File to Upload
-          </button>
-          <input type="file" @change="${this.handleFileSelect}" />
-        </label>
-        <progress value="${this.progress}" max="100"></progress>
-        <div class="status">${this.status}</div>
-      </div>
+      <form @submit="${this.handleSubmit}" enctype="multipart/form-data">
+        <div class="uploader">
+          <label>
+            <button
+              type="button"
+              @click="${() =>
+                this.shadowRoot.querySelector('input[type=file]').click()}"
+            >
+              Select File to Upload
+            </button>
+            <input
+              type="file"
+              @change="${this.handleFileSelect}"
+              style="display: none;"
+            />
+          </label>
+          <progress value="${this.progress}" max="100"></progress>
+          <div class="status">${this.status}</div>
+        </div>
+        <button type="submit">Upload File</button>
+      </form>
+
+      <section
+        id="uploadResultSection"
+        style="display: ${this.cloudinaryUrl ? 'block' : 'none'};"
+      >
+        ${this.renderUploadResult()}
+      </section>
     `;
   }
 }

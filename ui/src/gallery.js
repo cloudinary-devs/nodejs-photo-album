@@ -1,7 +1,7 @@
 const gallery = document.querySelector('photo-gallery');
 
 const response = await fetch(
-  `${import.meta.env.VITE_API_ENDPOINT}/list_uploaded_files`
+  `${import.meta.env.VITE_API_ENDPOINT}/list-uploaded-files`
 );
 const data = await response.json();
 

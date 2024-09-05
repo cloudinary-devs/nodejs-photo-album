@@ -10,16 +10,17 @@
       href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap"
       rel="stylesheet"
     />
-    <script type="module" src="/src/upload-large.js"></script>
-    <script type="module" src="/src/my-navbar.js"></script>
+    <script type="module" src="src/upload-large.js"></script>
+    <script type="module" src="src/my-navbar.js"></script>
   </head>
   <body>
     <my-navbar></my-navbar>
     <main>
       <h1>Node.js sample app</h1>
+      <p>This example shows how to upload a large file from the browser.</p>
       <section>
         <large-file-uploader
-          uploadUrl="http://localhost:3000/upload_large_from_browser_chunked"
+          uploadUrl="http://localhost:3000/upload-large-from-browser-chunked"
         ></large-file-uploader>
       </section>
     </main>
