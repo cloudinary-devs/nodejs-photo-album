@@ -1,9 +1,10 @@
 import { LitElement, html, css } from 'lit';
 
-class PhotoGalleryItem extends LitElement {
+class MediaGalleryItem extends LitElement {
   static properties = {
     src: { type: String },
     alt: { type: String },
+    type: { type: String },
   };
 
   static styles = css`
@@ -16,8 +17,11 @@ class PhotoGalleryItem extends LitElement {
       width: 400px;
       height: 400px;
     }
-
-    img {
+    img,
+    video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
       border-radius: 5px;
     }
   `;
@@ -26,13 +30,16 @@ class PhotoGalleryItem extends LitElement {
     super();
     this.src = '';
     this.alt = '';
+    this.type = 'image';
   }
 
   render() {
     return html`
-      <img src="${this.src}" alt="${this.alt}" width="400" height="400" />
+      ${this.type === 'image'
+        ? html`<img src="${this.src}" alt="${this.alt}" />`
+        : html`<video src="${this.src}" controls></video>`}
     `;
   }
 }
 
-customElements.define('photo-gallery-item', PhotoGalleryItem);
+customElements.define('media-gallery-item', MediaGalleryItem);

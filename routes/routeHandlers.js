@@ -39,24 +39,46 @@ and optimising its format and quality, then sends the transformed URLs back as t
 const listUploadedFiles = async (request, reply) => {
   console.log('Listing uploaded files tagged', tags[0]);
   try {
-    const { resources } = await cloudinary.api.resources_by_tag(
-      'nodejs-sample'
-    );
-    const transformedUrls = resources.map((resource) =>
+    const videosPromise = cloudinary.api.resources_by_tag(tags[0], {
+      resource_type: 'video',
+    });
+
+    const imagesPromise = cloudinary.api.resources_by_tag(tags[0], {
+      resource_type: 'image',
+    });
+
+    const [videosResult, imagesResult] = await Promise.all([
+      videosPromise,
+      imagesPromise,
+    ]);
+
+    const transformedVideos = videosResult.resources.map((resource) =>
       cloudinary.url(resource.public_id, {
+        resource_type: 'video',
         transformation: [
-          {
-            height: 400,
-            width: 400,
-            crop: 'fill',
-          },
+          { height: 400, width: 400, crop: 'fill' },
           { fetch_format: 'auto' },
           { quality: 'auto' },
         ],
       })
     );
 
-    reply.code(200).send(transformedUrls);
+    const transformedImages = imagesResult.resources.map((resource) =>
+      cloudinary.url(resource.public_id, {
+        transformation: [
+          { height: 400, width: 400, crop: 'fill' },
+          { fetch_format: 'auto' },
+          { quality: 'auto' },
+        ],
+      })
+    );
+
+    const response = {
+      images: transformedImages,
+      videos: transformedVideos,
+    };
+
+    reply.code(200).send(response);
   } catch (error) {
     console.error(error);
     reply.status(500).send({ error: 'Failed to retrieve files' });
@@ -136,6 +158,7 @@ const uploadLargeFromLocal = async (request, reply) => {
         {
           resource_type: 'video',
           chunk_size: CHUNK_SIZE,
+          tags,
         },
         (error, result) => {
           if (error) {
@@ -210,6 +233,7 @@ const uploadLocalFromBrowserChunked = async (request, reply) => {
           cloudinary.uploader.upload_large(
             filePath,
             {
+              tags,
               resource_type: 'auto',
               chunk_size: CHUNK_SIZE,
             },
