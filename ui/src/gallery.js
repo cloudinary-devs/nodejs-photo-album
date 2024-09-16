@@ -4,4 +4,6 @@ const response = await fetch(
 );
 const data = await response.json();
 
+// First, set the data and then turn off the loading state
 gallery.data = data;
+gallery.loading = false;

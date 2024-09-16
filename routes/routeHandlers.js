@@ -124,7 +124,7 @@ const uploadFromBrowser = async (request, reply) => {
     const buffer = await data.toBuffer();
     await new Promise((resolve) => {
       cloudinary.uploader
-        .upload_stream({ tags }, (error, uploadResult) => {
+        .upload_chunked_stream({ tags }, (error, uploadResult) => {
           if (error) {
             reply.code(500).send({ error: 'Failed to upload image' });
           } else {
@@ -276,18 +276,21 @@ const uploadLargeStreamFromBrowser = async (request, reply) => {
     const buffer = await data.toBuffer();
     await new Promise((resolve) => {
       cloudinary.uploader
-        .upload_large_stream({ tags }, (error, uploadResult) => {
-          if (error) {
-            console.error(error);
-            reply.code(500).send({ error: 'Failed to upload video' });
-          } else {
-            resolve(uploadResult);
-            reply.send({
-              url: uploadResult.secure_url,
-              public_id: uploadResult.public_id,
-            });
+        .upload_chunked_stream(
+          { tags, resource_type: 'raw' },
+          (error, uploadResult) => {
+            if (error) {
+              console.error(error);
+              reply.code(500).send({ error: 'Failed to upload video' });
+            } else {
+              resolve(uploadResult);
+              reply.send({
+                url: uploadResult.secure_url,
+                public_id: uploadResult.public_id,
+              });
+            }
           }
-        })
+        )
         .end(buffer);
     });
   } catch (error) {

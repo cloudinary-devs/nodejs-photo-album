@@ -4,6 +4,7 @@ import './media-gallery-item.js';
 class MediaGallery extends LitElement {
   static properties = {
     data: { type: Object },
+    loading: { type: Boolean },
   };
 
   static styles = css`
@@ -40,12 +41,28 @@ class MediaGallery extends LitElement {
   constructor() {
     super();
     this.data = { images: [], videos: [] };
+    this.loading = true; // Set the loading state to true initially
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
+    this.loadData();
+  }
+
+  async loadData() {
+    // Simulate data loading (replace this with real data fetching)
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+    this.loading = false; // Set loading to false when the data has finished loading
   }
 
   render() {
     const { images, videos } = this.data;
     const hasImages = images && images.length > 0;
     const hasVideos = videos && videos.length > 0;
+
+    if (this.loading) {
+      return html`<p class="message">Loading gallery...</p>`;
+    }
 
     return html`
       <div class="gallery">
