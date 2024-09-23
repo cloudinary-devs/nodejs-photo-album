@@ -1,5 +1,5 @@
-const uploadResult = document.getElementById('uploadResult');
-uploadResult.style.display = 'none';
+const uploadResultSection = document.getElementById('uploadResultSection');
+uploadResultSection.style.display = 'none';
 const uploadHandler = async (event) => {
   event.preventDefault();
 
@@ -21,13 +21,13 @@ const uploadHandler = async (event) => {
 
     const result = await response.json();
     if (response.ok) {
-      uploadResult.style.display = 'block';
+      uploadResultSection.style.display = 'block';
       console.log(`Image uploaded successfully: ${result.url}`);
       const img = document.createElement('img');
       img.src = `${import.meta.env.VITE_CLOUDINARY_PREFIX}/w_200/${
         result.public_id
       }`;
-      uploadResult.appendChild(img);
+      uploadResultSection.appendChild(img);
     } else {
       document.querySelector('button[type="submit"]').disabled = false;
       console.error(result);

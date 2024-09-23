@@ -1,42 +1,15 @@
-import { LitElement, html, css } from 'lit';
+import { LitElement, html } from 'lit';
 import './media-gallery-item.js';
 
 class MediaGallery extends LitElement {
+  createRenderRoot() {
+    return this;
+  }
+
   static properties = {
     data: { type: Object },
     loading: { type: Boolean },
   };
-
-  static styles = css`
-    :host {
-      display: block;
-      padding: 20px;
-    }
-    .gallery {
-      display: grid;
-      gap: 20px;
-    }
-    @media (min-width: 1024px) {
-      .gallery {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
-    @media (min-width: 768px) and (max-width: 1023px) {
-      .gallery {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-    @media (max-width: 767px) {
-      .gallery {
-        grid-template-columns: 1fr;
-      }
-    }
-    .message {
-      text-align: center;
-      font-size: 1.2em;
-      color: #666;
-    }
-  `;
 
   constructor() {
     super();
@@ -61,45 +34,49 @@ class MediaGallery extends LitElement {
     const hasVideos = videos && videos.length > 0;
 
     if (this.loading) {
-      return html`<p class="message">Loading gallery...</p>`;
+      return html`<p class="text-xl p-4">Loading gallery...</p>`;
     }
 
     return html`
-      <div class="gallery">
+      <div class="flex flex-wrap -mx-4">
         ${!hasImages && !hasVideos
-          ? html`<p class="message">
+          ? html`<p class="text-xl p-4">
               No images or videos tagged as 'nodejs-sample'
             </p>`
           : html`
               ${hasImages
                 ? images.map(
                     (image) => html`
-                      <media-gallery-item
-                        src="${image}"
-                        alt="Image"
-                        type="image"
-                      ></media-gallery-item>
+                      <div class="lg:w-1/3 md:w-1/2 w-full p-4">
+                        <media-gallery-item
+                          src="${image}"
+                          alt="Image"
+                          type="image"
+                        ></media-gallery-item>
+                      </div>
                     `
                   )
                 : ''}
               ${hasVideos
                 ? videos.map(
                     (video) => html`
-                      <media-gallery-item
-                        src="${video}"
-                        alt="Video"
-                        type="video"
-                      ></media-gallery-item>
+                      <div class="lg:w-1/3 md:w-1/2 w-full p-4">
+                        <media-gallery-item
+                          src="${video}"
+                          alt="Video"
+                          type="video"
+                        ></media-gallery-item>
+                      </div>
                     `
                   )
                 : ''}
             `}
       </div>
       ${!hasImages && hasVideos
-        ? html`<p class="message">No images tagged as 'nodejs-sample'</p>`
+        ? html`<p class="text-xl p-4">No images tagged as 'nodejs-sample'</p>`
         : ''}
       ${!hasVideos && hasImages
-        ? html`<p class="message">No videos tagged as 'nodejs-sample'</p>`
+        ? html`<p class="text-xl p-4">No videos tagged as 'nodejs-sample'</p>`
         : ''}
     `;
   }

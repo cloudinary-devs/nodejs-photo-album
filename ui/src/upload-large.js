@@ -1,28 +1,9 @@
-import { LitElement, html, css } from 'lit';
+import { LitElement, html } from 'lit';
 
 class LargeFileUploader extends LitElement {
-  static styles = css`
-    .uploader {
-      margin-bottom: 20px;
-    }
-    progress {
-      width: 100%;
-      margin-top: 10px;
-    }
-    .status {
-      margin-top: 10px;
-      color: #555;
-    }
-    #uploadResultSection {
-      display: none;
-    }
-    /* Style for both video and image elements */
-    video,
-    img {
-      width: 400px;
-      margin-top: 10px;
-    }
-  `;
+  createRenderRoot() {
+    return this;
+  }
 
   static properties = {
     uploadUrl: { type: String },
@@ -43,6 +24,18 @@ class LargeFileUploader extends LitElement {
 
   handleFileSelect(e) {
     const file = e.target.files[0];
+    if (file) {
+      this.status = `File selected: ${file.name}`;
+    } else {
+      this.status = 'Ready to upload';
+    }
+    this.requestUpdate(); // Re-render to update the status
+  }
+
+  handleSubmit(e) {
+    e.preventDefault(); // Prevents form submission (page refresh)
+    const fileInput = this.querySelector('input[type=file]');
+    const file = fileInput.files[0];
     if (file) {
       this.uploadFileInChunks(file);
     }
@@ -80,8 +73,13 @@ class LargeFileUploader extends LitElement {
           const result = await response.json();
           this.progress = ((chunkIndex + 1) / totalChunks) * 100;
 
+          // Modify the Cloudinary URL to add the 'w_400' transformation
           if (result.url) {
-            this.cloudinaryUrl = result.url;
+            const cloudinaryUrl = result.url.replace(
+              '/upload/',
+              '/upload/w_400/'
+            );
+            this.cloudinaryUrl = cloudinaryUrl;
             this.status = 'Upload complete! File available on Cloudinary.';
           } else {
             this.status = `Chunk ${chunkIndex + 1} uploaded. ${result.status}`;
@@ -115,9 +113,17 @@ class LargeFileUploader extends LitElement {
 
   renderUploadResult() {
     if (this.cloudinaryUrl.includes('/video/')) {
-      return html`<video controls src="${this.cloudinaryUrl}"></video>`;
+      return html`<video
+        controls
+        src="${this.cloudinaryUrl}"
+        class="m-2"
+      ></video>`;
     } else if (this.cloudinaryUrl.includes('/image/')) {
-      return html`<img src="${this.cloudinaryUrl}" alt="Uploaded image" />`;
+      return html`<img
+        src="${this.cloudinaryUrl}"
+        alt="Uploaded image"
+        class="m-2"
+      />`;
     }
     return html``;
   }
@@ -125,33 +131,47 @@ class LargeFileUploader extends LitElement {
   render() {
     return html`
       <form @submit="${this.handleSubmit}" enctype="multipart/form-data">
-        <div class="uploader">
+        <!-- File input and upload button in the same row -->
+        <div class="flex items-center space-x-4">
           <label>
             <button
               type="button"
-              @click="${() =>
-                this.shadowRoot.querySelector('input[type=file]').click()}"
+              class="btn btn-primary"
+              @click="${() => this.querySelector('input[type=file]').click()}"
             >
               Select File to Upload
             </button>
             <input
               type="file"
+              class="file-input file-input-bordered file-input-primary"
               @change="${this.handleFileSelect}"
               style="display: none;"
             />
           </label>
-          <progress value="${this.progress}" max="100"></progress>
-          <div class="status">${this.status}</div>
+
+          <button class="btn btn-primary" type="submit">Upload File</button>
         </div>
-        <button type="submit">Upload File</button>
+
+        <!-- Status text below the buttons -->
+        <div class="mt-2 text-lg">${this.status}</div>
+
+        <!-- Progress bar below the status text -->
+        <progress
+          class="progress progress-primary w-56 mt-2"
+          value="${this.progress}"
+          max="100"
+        ></progress>
       </form>
 
-      <section
+      <!-- Upload result section -->
+      <div
+        class="flex flex-wrap"
         id="uploadResultSection"
-        style="display: ${this.cloudinaryUrl ? 'block' : 'none'};"
+        style="display: ${this.cloudinaryUrl ? 'flex' : 'none'};"
       >
+        <h2 class="w-full text-xl font-bold mt-3">Uploaded asset</h2>
         ${this.renderUploadResult()}
-      </section>
+      </div>
     `;
   }
 }

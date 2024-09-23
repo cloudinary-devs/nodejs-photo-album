@@ -15,16 +15,39 @@
   </head>
   <body>
     <my-navbar></my-navbar>
-    <main>
-      <h1>Node.js sample app</h1>
-      <p>This example shows how to upload a large file from the browser.</p>
+    <main class="bg-gray-200 container mx-auto p-8 rounded-lg shadow-2xl">
+      <h1 class="text-5xl font-bold m-2">Upload large files</h1>
+      <p class="m-2">
+        This page demonstrates how to upload large files (images or videos) from
+        the browser.
+        <a
+          class="underline text-blue-500 hover:bg-blue-200 rounded-full transition duration-300"
+          href="https://cloudinary.com/documentation/node_integration"
+        >
+          Cloudinary Node.js SDK
+        </a>
+        .
+      </p>
+      <div class="p-2">
+        The backend exposes these API endpoints that support the following
+        features in this app:
+        <ul class="list-disc list-inside">
+          <li>
+            <a
+              class="underline text-blue-500 hover:bg-blue-200 rounded-full transition duration-300"
+              href="./upload"
+            >
+              Upload (Upload Widget)
+            </a>
+            : bla
+          </li>
+        </ul>
+      </div>
       <section>
         <large-file-uploader
           uploadUrl="http://localhost:3000/upload-large-from-browser-chunked"
         ></large-file-uploader>
       </section>
     </main>
-
-    <script></script>
   </body>
 </html>

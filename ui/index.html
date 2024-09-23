@@ -11,19 +11,36 @@
       rel="stylesheet"
     />
     <script type="module" src="src/my-navbar.js"></script>
-    <script type="module">
-      console.log(import.meta.env);
-    </script>
   </head>
   <body>
     <my-navbar></my-navbar>
-    <main>
-      <h1>Node.js sample app</h1>
-      <section>
-        <p>Some intro text with links to docs?</p>
-      </section>
+    <main class="bg-gray-200 container mx-auto p-8 rounded-lg shadow-2xl">
+      <h1 class="text-5xl font-bold m-2">Welcome</h1>
+      <p class="m-2">
+        This sample project shows how to use the
+        <a
+          class="underline text-blue-500 hover:bg-blue-200 rounded-full transition duration-300"
+          href="https://cloudinary.com/documentation/node_integration"
+        >
+          Cloudinary Node.js SDK
+        </a>
+        .
+      </p>
+      <div class="p-2">
+        The backend exposes these API endpoints that support the following
+        features in this app:
+        <ul class="list-disc list-inside">
+          <li>
+            <a
+              class="underline text-blue-500 hover:bg-blue-200 rounded-full transition duration-300"
+              href="./upload"
+            >
+              Upload (Upload Widget)
+            </a>
+            : bla
+          </li>
+        </ul>
+      </div>
     </main>
-
-    <script></script>
   </body>
 </html>

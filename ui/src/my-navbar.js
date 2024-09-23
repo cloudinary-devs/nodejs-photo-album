@@ -1,36 +1,75 @@
-import { LitElement, html, css } from 'lit';
+import { LitElement, html } from 'lit';
 
 class MyNavbar extends LitElement {
-  static styles = css`
-    nav {
-      background-color: #f8f9fa;
-      padding: 1rem;
-      display: flex;
-      justify-content: space-around;
-      border-radius: 15px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-    a {
-      text-decoration: none;
-      color: #333;
-      font-weight: 700;
-    }
-    a:hover {
-      color: #007bff;
-    }
-  `;
-
+  createRenderRoot() {
+    return this;
+  }
   render() {
     return html`
-      <nav>
-        <a href="/">Home</a>
-        <a href="/upload">Upload from the browser</a>
-        <a href="/upload-large">Upload large files from the browser</a>
-        <a href="/upload-large-stream"
-          >Upload large files from the browser (Stream)</a
-        >
-        <a href="/gallery">Gallery</a>
-      </nav>
+      <div class="navbar bg-base-100">
+        <div class="navbar-start">
+          <div class="dropdown">
+            <label tabindex="{0}" class="btn btn-ghost lg:hidden">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M4 6h16M4 12h8m-8 6h16"
+                />
+              </svg>
+            </label>
+            <ul
+              tabindex="{0}"
+              class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+            >
+              <li>
+                <a href="/">Home</a>
+              </li>
+              <li>
+                <a href="/upload">Upload from browser</a>
+              </li>
+              <li>
+                <a href="/upload-large">Upload large files</a>
+              </li>
+              <li>
+                <a href="/upload-large-stream">Upload large files via stream</a>
+              </li>
+              <li>
+                <a href="/gallery">Gallery</a>
+              </li>
+            </ul>
+          </div>
+          <a href="/" class="btn btn-ghost text-xl">
+            Cloudinary Node.js Sample App
+          </a>
+        </div>
+        <div class="navbar-center hidden lg:flex">
+          <ul class="menu menu-horizontal px-1">
+            <li>
+              <a href="/">Home</a>
+            </li>
+            <li>
+              <a href="/upload">Upload from browser</a>
+            </li>
+            <li>
+              <a href="/upload-large">Upload large files</a>
+            </li>
+            <li>
+              <a href="/upload-large-stream">Upload large files via stream</a>
+            </li>
+            <li>
+              <a href="/gallery">Gallery</a>
+            </li>
+          </ul>
+        </div>
+      </div>
     `;
   }
 }

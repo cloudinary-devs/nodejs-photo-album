@@ -15,21 +15,47 @@
   </head>
   <body>
     <my-navbar></my-navbar>
-    <main>
-      <p>
-        Here you can upload a video to your Cloudinary account (images are also
-        supported but for demonstration purposes please use a video). The
-        uploaded videos will appear under the <a href="/gallery">Gallery</a>.
+    <main class="bg-gray-200 container mx-auto p-8 rounded-lg shadow-2xl">
+      <h1 class="text-5xl font-bold m-2">Upload large files</h1>
+      <p class="m-2">
+        This page demonstrates how to upload large files (images or videos) from
+        the browser using streams.
+        <a
+          class="underline text-blue-500 hover:bg-blue-200 rounded-full transition duration-300"
+          href="https://cloudinary.com/documentation/node_integration"
+        >
+          Cloudinary Node.js SDK
+        </a>
+        .
       </p>
+      <div class="p-2">
+        The backend exposes these API endpoints that support the following
+        features in this app:
+        <ul class="list-disc list-inside">
+          <li>
+            <a
+              class="underline text-blue-500 hover:bg-blue-200 rounded-full transition duration-300"
+              href="./upload"
+            >
+              Upload (Upload Widget)
+            </a>
+            : bla
+          </li>
+        </ul>
+      </div>
       <form id="uploadForm" enctype="multipart/form-data">
-        <input type="file" name="video" id="video" accept="video/*" />
-        <button type="submit">Upload Video</button>
+        <input
+          class="file-input file-input-bordered file-input-primary"
+          type="file"
+          name="video"
+          id="video"
+          accept="video/*"
+        />
+        <button class="btn btn-primary" type="submit">Upload Video</button>
       </form>
       <section id="uploadResultSection">
         <div id="uploadResult"></div>
       </section>
     </main>
-
-    <script></script>
   </body>
 </html>

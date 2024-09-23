@@ -15,21 +15,48 @@
   </head>
   <body>
     <my-navbar></my-navbar>
-    <main>
-      <h1>Node.js sample app</h1>
-      <p>
-        Here you can upload an image to your Cloudinary account. The uploaded
-        images will appear under the <a href="/gallery">Gallery</a>.
+    <main class="bg-gray-200 container mx-auto p-8 rounded-lg shadow-2xl">
+      <h1 class="text-5xl font-bold m-2">Welcome</h1>
+      <p class="m-2">
+        This sample project shows how to use the
+        <a
+          class="underline text-blue-500 hover:bg-blue-200 rounded-full transition duration-300"
+          href="https://cloudinary.com/documentation/node_integration"
+        >
+          Cloudinary Node.js SDK
+        </a>
+        .
       </p>
+      <div class="p-2">
+        The backend exposes these API endpoints that support the following
+        features in this app:
+        <ul class="list-disc list-inside">
+          <li>
+            <a
+              class="underline text-blue-500 hover:bg-blue-200 rounded-full transition duration-300"
+              href="./upload"
+            >
+              Upload (Upload Widget)
+            </a>
+            : bla
+          </li>
+        </ul>
+      </div>
       <form id="uploadForm" enctype="multipart/form-data">
-        <input type="file" name="image" id="image" accept="image/*" />
-        <button type="submit">Upload Image</button>
+        <input
+          class="file-input file-input-bordered file-input-primary"
+          type="file"
+          name="image"
+          id="image"
+          accept="image/*"
+        />
+        <button class="btn btn-primary" type="submit">Upload Image</button>
       </form>
-      <section id="uploadResultSection">
-        <div id="uploadResult"></div>
-      </section>
-    </main>
 
-    <script></script>
+      <div class="flex flex-wrap" id="uploadResultSection">
+        <h2 class="w-full text-xl font-bold mt-3">Uploaded images</h2>
+        <div id="uploadResult"></div>
+      </div>
+    </main>
   </body>
 </html>
