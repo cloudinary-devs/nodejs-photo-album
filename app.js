@@ -17,7 +17,7 @@ It gets instantiated with logging enabled which allows us to track request/respo
 For more visit https://fastify.dev.
 */
 const fastify = Fastify({
-  logger: true,
+  // logger: true,
 });
 
 /*

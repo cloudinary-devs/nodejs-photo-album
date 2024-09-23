@@ -51,33 +51,37 @@ const listUploadedFiles = async (request, reply) => {
       imagesPromise,
     ]);
 
-    const transformedVideos = videosResult.resources.map((resource) =>
-      cloudinary.url(resource.public_id, {
-        resource_type: 'video',
-        transformation: [
-          { height: 400, width: 400, crop: 'fill' },
-          { fetch_format: 'auto' },
-          { quality: 'auto' },
-        ],
-      })
+    // Combine both images and videos into a single array
+    const combinedResources = [
+      ...videosResult.resources.map((resource) => ({
+        ...resource,
+        type: 'video',
+      })),
+      ...imagesResult.resources.map((resource) => ({
+        ...resource,
+        type: 'image',
+      })),
+    ];
+
+    combinedResources.sort(
+      (a, b) => new Date(b.created_at) - new Date(a.created_at)
     );
 
-    const transformedImages = imagesResult.resources.map((resource) =>
-      cloudinary.url(resource.public_id, {
-        transformation: [
-          { height: 400, width: 400, crop: 'fill' },
-          { fetch_format: 'auto' },
-          { quality: 'auto' },
-        ],
-      })
-    );
+    // Apply transformations based on the type
+    const transformedResources = combinedResources.map((resource) => {
+      const transformation = [
+        { height: 400, width: 400, crop: 'fill' },
+        { fetch_format: 'auto' },
+        { quality: 'auto' },
+      ];
 
-    const response = {
-      images: transformedImages,
-      videos: transformedVideos,
-    };
+      return cloudinary.url(resource.public_id, {
+        resource_type: resource.type,
+        transformation,
+      });
+    });
 
-    reply.code(200).send(response);
+    reply.code(200).send({ resources: transformedResources });
   } catch (error) {
     console.error(error);
     reply.status(500).send({ error: 'Failed to retrieve files' });
