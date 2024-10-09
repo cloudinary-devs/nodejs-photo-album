@@ -18,31 +18,19 @@
     <main class="bg-gray-200 container mx-auto p-8 rounded-lg shadow-2xl">
       <h1 class="text-5xl font-bold m-2">Upload large files</h1>
       <p class="m-2">
-        This page demonstrates how to upload large files (images or videos) from
-        the browser.
+        This page uses the <b>cloudinary.uploader.upload_large</b> method to upload a large file in chunks. This is useful for managing large file uploads efficiently, especially in cases where the client may be constrained by bandwidth or where interruptions could occur during the upload. 
+      </p>
+      <p class="m-2">
+        The tag, <b>nodejs-sample</b>, is applied to the uploaded asset. This tag is used to retrieve all the media uploaded through this app, which you can view in the 
         <a
           class="underline text-blue-500 hover:bg-blue-200 rounded-full transition duration-300"
-          href="https://cloudinary.com/documentation/node_integration"
+          href="./gallery"
         >
-          Cloudinary Node.js SDK
+          Gallery
         </a>
-        .
+         .
       </p>
-      <div class="p-2">
-        The backend exposes these API endpoints that support the following
-        features in this app:
-        <ul class="list-disc list-inside">
-          <li>
-            <a
-              class="underline text-blue-500 hover:bg-blue-200 rounded-full transition duration-300"
-              href="./upload"
-            >
-              Upload (Upload Widget)
-            </a>
-            : bla
-          </li>
-        </ul>
-      </div>
+      <br>
       <section>
         <large-file-uploader
           uploadUrl="http://localhost:3000/upload-large-from-browser-chunked"
