@@ -24,7 +24,7 @@ const uploadHandler = async (event) => {
       uploadResultSection.style.display = 'block';
       console.log(`Image uploaded successfully: ${result.url}`);
       const img = document.createElement('img');
-      img.src = `${import.meta.env.VITE_CLOUDINARY_PREFIX}/w_200/${
+      img.src = `${import.meta.env.VITE_CLOUDINARY_IMAGE_PREFIX}/w_400/${
         result.public_id
       }`;
       uploadResultSection.appendChild(img);
