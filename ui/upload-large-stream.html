@@ -18,19 +18,27 @@
     <main class="bg-gray-200 container mx-auto p-8 rounded-lg shadow-2xl">
       <h1 class="text-5xl font-bold m-2">Upload large files (via stream)</h1>
       <p class="m-2">
-        This page uses the <b>cloudinary.uploader.upload_chunked_stream</b> method to upload a large file using a stream. 
+        This page uses the
+        <code class="bg-gray-100 text-red-600 font-mono text-sm p-1 rounded-md"
+          >cloudinary.uploader.upload_chunked_stream</code
+        >
+        method to upload a large file using a stream.
       </p>
       <p class="m-2">
-        The tag, <b>nodejs-sample</b>, is applied to the uploaded asset. This tag is used to retrieve all the media uploaded through this app, which you can view in the 
+        The tag,
+        <code class="bg-gray-100 text-red-600 font-mono text-sm p-1 rounded-md"
+          >nodejs-sample</code
+        >, is applied to the uploaded asset. This tag is used to retrieve all
+        the media uploaded through this app, which you can view in the
         <a
           class="underline text-blue-500 hover:bg-blue-200 rounded-full transition duration-300"
           href="./gallery"
         >
           Gallery
         </a>
-         .
+        .
       </p>
-      <br>
+      <br />
       <form id="uploadForm" enctype="multipart/form-data">
         <input
           class="file-input file-input-bordered file-input-primary"
@@ -39,7 +47,9 @@
           id="video"
           accept="video/*"
         />
-        <button class="btn btn-primary" type="submit">Upload Large Image/Video</button>
+        <button class="btn btn-primary" type="submit">
+          Upload Large Image/Video
+        </button>
       </form>
       <section id="uploadResultSection">
         <div id="uploadResult"></div>

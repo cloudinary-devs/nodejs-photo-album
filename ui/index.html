@@ -19,33 +19,88 @@
       <p class="m-2">
         This sample project shows how to use the
         <a
-          class="underline text-blue-500 hover:bg-blue-200 rounded-full transition duration-300"
+          class="underline text-blue-500 hover:bg-blue-200 transition duration-300"
           href="https://cloudinary.com/documentation/node_integration"
           target="_blank"
         >
           Cloudinary Node.js SDK
         </a>
-         to upload files to your product environment in various ways:
+        to upload files to your product environment in various ways:
       </p>
       <div class="p-2">
-        <ul class="list-disc list-inside">
+        <h2 class="text-xl font-bold">Uploading from the CLI</h2>
+        <p>
+          There are several use-cases for uploading files from the filesystem
+          using the Node.js SDK via the command line. To showcase such features
+          there are 2 API endpoints that can be leveraged, these are:
+        </p>
+        <ul class="list-disc list-inside p-2">
+          <li>
+            <code
+              class="bg-gray-100 text-red-600 font-mono text-sm p-1 rounded-md"
+              >/upload-from-local</code
+            >
+            - uploads the two files that are bundled with this repository
+            <code
+              class="bg-gray-100 text-red-600 font-mono text-sm p-1 rounded-md"
+              >/photos/singapore.jpeg</code
+            >
+            and
+            <code
+              class="bg-gray-100 text-red-600 font-mono text-sm p-1 rounded-md"
+              >photos/sydney.jpeg</code
+            >.
+          </li>
+          <li>
+            <code
+              class="bg-gray-100 text-red-600 font-mono text-sm p-1 rounded-md"
+              >/upload-large-from-local</code
+            >
+            - uploads a video from a folder that is bundled with this repository
+            <code
+              class="bg-gray-100 text-red-600 font-mono text-sm p-1 rounded-md"
+              >video/singapore.mp4</code
+            >
+          </li>
+        </ul>
+      </div>
+      <div class="p-2">
+        <h2 class="text-xl font-bold">Uploading from the browser</h2>
+        <p>
+          The rest of the API endpoints are handling file uploads from the
+          browser using various strategies.
+        </p>
+        <ul class="list-disc list-inside p-2">
           <li>
             <a
-              class="underline text-blue-500 hover:bg-blue-200 rounded-full transition duration-300"
+              class="underline text-blue-500 hover:bg-blue-200 transition duration-300"
               href="./upload"
             >
               Upload from browser
             </a>
-            : Uses the <b>cloudinary.uploader.upload_chunked_stream</b> method to upload a file, which has been converted to a buffer.   
+            : Uses the
+            <code
+              class="bg-gray-100 text-red-600 font-mono text-sm p-1 rounded-md"
+              >cloudinary.uploader.upload_chunked_stream</code
+            >
+            method to upload a file, which has been converted to a buffer.
           </li>
           <li>
             <a
-              class="underline text-blue-500 hover:bg-blue-200 rounded-full transition duration-300"
+              class="underline text-blue-500 hover:bg-blue-200 transition duration-300"
               href="./upload-large"
             >
               Upload large files
             </a>
-            : Uses the <b>cloudinary.uploader.upload_large</b> method to upload a large file in chunks. This is useful for managing large file uploads efficiently, especially in cases where the client may be constrained by bandwidth or where interruptions could occur during the upload. 
+            : Uses the
+            <code
+              class="bg-gray-100 text-red-600 font-mono text-sm p-1 rounded-md"
+              >cloudinary.uploader.upload_large</code
+            >
+            method to upload a large file in chunks. This is useful for managing
+            large file uploads efficiently, especially in cases where the client
+            may be constrained by bandwidth or where interruptions could occur
+            during the upload.
           </li>
           <li>
             <a
@@ -54,19 +109,27 @@
             >
               Upload large files via stream
             </a>
-            : Uses the <b>cloudinary.uploader.upload_chunked_stream</b> method to upload a large file using a stream. 
+            : Uses the
+            <code
+              class="bg-gray-100 text-red-600 font-mono text-sm p-1 rounded-md"
+              >cloudinary.uploader.upload_stream</code
+            >
+            method to upload a large file using a stream.
           </li>
         </ul>
       </div>
       <p class="m-2">
-        Each of the upload methods also applies the tag, <b>nodejs-sample</b>, to the uploaded asset. This tag is used to retrieve all the media uploaded through this app, which you can view in the 
+        Each of the upload methods also applies the tag,
+        <code class="bg-gray-100 text-red-600 font-mono text-sm p-1 rounded-md"
+          >nodejs-sample</code
+        >, to the uploaded asset. This tag is used to retrieve all the media
+        uploaded through this app, which you can view in the
         <a
-          class="underline text-blue-500 hover:bg-blue-200 rounded-full transition duration-300"
+          class="underline text-blue-500 hover:bg-blue-200 transition duration-300"
           href="./gallery"
         >
-          Gallery
-        </a>
-         .
+          Gallery </a
+        >.
       </p>
     </main>
   </body>
