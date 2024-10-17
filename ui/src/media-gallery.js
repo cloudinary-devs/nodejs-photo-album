@@ -39,7 +39,7 @@ class MediaGallery extends LitElement {
         class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-2 md:gap-4 place-items-center"
       >
         ${!hasResources
-          ? html`<p class="text p-4">No media tagged as 'nodejs-sample'</p>`
+          ? html`<p class="text p-4">No media tagged as <b>nodejs-sample</b></p>`
           : resources.map(
               (resource) => html`
                 <div class="p-4">

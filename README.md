@@ -2,9 +2,7 @@
 
 This project demonstrates how to use the [Cloudinary Node.js SDK](https://cloudinary.com/documentation/node_integration) to create a photo album app.
 
-The sample project has two distinctive parts: a backend and a frontend and they both intend to demonstrate the following functionality:
-
--
+The sample project has two distinctive parts: a backend and a frontend and together they demonstrate uploading media to your product environment and displaying the uploaded media.
 
 # Setup
 

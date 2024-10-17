@@ -21,26 +21,53 @@
         <a
           class="underline text-blue-500 hover:bg-blue-200 rounded-full transition duration-300"
           href="https://cloudinary.com/documentation/node_integration"
+          target="_blank"
         >
           Cloudinary Node.js SDK
         </a>
-        .
+         to upload files to your product environment in various ways:
       </p>
       <div class="p-2">
-        The backend exposes these API endpoints that support the following
-        features in this app:
         <ul class="list-disc list-inside">
           <li>
             <a
               class="underline text-blue-500 hover:bg-blue-200 rounded-full transition duration-300"
               href="./upload"
             >
-              Upload (Upload Widget)
+              Upload from browser
             </a>
-            : bla
+            : Uses the <b>cloudinary.uploader.upload_chunked_stream</b> method to upload a file, which has been converted to a buffer.   
+          </li>
+          <li>
+            <a
+              class="underline text-blue-500 hover:bg-blue-200 rounded-full transition duration-300"
+              href="./upload-large"
+            >
+              Upload large files
+            </a>
+            : Uses the <b>cloudinary.uploader.upload_large</b> method to upload a large file in chunks. This is useful for managing large file uploads efficiently, especially in cases where the client may be constrained by bandwidth or where interruptions could occur during the upload. 
+          </li>
+          <li>
+            <a
+              class="underline text-blue-500 hover:bg-blue-200 rounded-full transition duration-300"
+              href="./upload-large-stream"
+            >
+              Upload large files via stream
+            </a>
+            : Uses the <b>cloudinary.uploader.upload_chunked_stream</b> method to upload a large file using a stream. 
           </li>
         </ul>
       </div>
+      <p class="m-2">
+        Each of the upload methods also applies the tag, <b>nodejs-sample</b>, to the uploaded asset. This tag is used to retrieve all the media uploaded through this app, which you can view in the 
+        <a
+          class="underline text-blue-500 hover:bg-blue-200 rounded-full transition duration-300"
+          href="./gallery"
+        >
+          Gallery
+        </a>
+         .
+      </p>
     </main>
   </body>
 </html>
