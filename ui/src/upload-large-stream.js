@@ -24,7 +24,7 @@ const uploadHandler = async (event) => {
       console.log(`Video uploaded successfully: ${result.url}`);
       uploadResult.style.display = 'block';
       const video = document.createElement('video');
-      video.src = `${import.meta.env.VITE_CLOUDINARY_PREFIX}/w_400/${
+      video.src = `${import.meta.env.VITE_CLOUDINARY_VIDEO_PREFIX}/w_400/${
         result.public_id
       }`;
       video.controls = true;

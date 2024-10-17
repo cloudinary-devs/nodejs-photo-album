@@ -14,11 +14,12 @@ CLOUDINARY_API_SECRET=
 CLOUDINARY_CLOUD_NAME=
 
 VITE_API_ENDPOINT=http://localhost:3000
-VITE_CLOUDINARY_PREFIX=https://res.cloudinary.com/YOUR-CLOUD-NAME/image/upload
+VITE_CLOUDINARY_IMAGE_PREFIX=https://res.cloudinary.com/YOUR-CLOUD-NAME/image/upload
+VITE_CLOUDINARY_VIDEO_PREFIX=https://res.cloudinary.com/YOUR-CLOUD-NAME/video/upload
 VITE_TITLE='Node.js Sample App'
 ```
 
-> Please make sure to change the `YOUR-CLOUD-NAME` part in `VITE_CLOUDINARY_PREFIX`!
+> Please make sure to change the `YOUR-CLOUD-NAME` part in **both** `VITE_CLOUDINARY_IMAGE_PREFIX` and `VITE_CLOUDINARY_VIDEO_PREFIX`!
 
 # Run
 

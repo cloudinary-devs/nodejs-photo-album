@@ -269,18 +269,18 @@ const uploadLocalFromBrowserChunked = async (request, reply) => {
 };
 
 /*
-
+uploadLargeStreamFromBrowser uses Cloudinary's `upload_stream` method to upload a (large) file from the browser. The file can be any large file, for demonstration purposes this endpoint handles video files. Since the upload_stream() doesn't support Promises by default, it is wrapped in a new Promise() call which resolves with the result of the upload and sends an API response object back with the uploaded asset's URL and public_id.
 */
 const uploadLargeStreamFromBrowser = async (request, reply) => {
-  console.log('Uploading large files from the browser using streams');
+  console.log('Uploading (large) files from the browser using streams');
   try {
     const data = await request.file();
 
     const buffer = await data.toBuffer();
     await new Promise((resolve) => {
       cloudinary.uploader
-        .upload_chunked_stream(
-          { tags, resource_type: 'raw' },
+        .upload_stream(
+          { tags, resource_type: 'video' },
           (error, uploadResult) => {
             if (error) {
               console.error(error);
