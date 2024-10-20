@@ -20,23 +20,21 @@
       <p class="m-2">
         This page uses the
         <code class="bg-gray-100 text-red-600 font-mono text-sm p-1 rounded-md"
-          >cloudinary.uploader.upload_chunked_stream</code
+          >cloudinary.uploader.upload_stream</code
         >
-        method to upload a large file using a stream.
+        method to upload a video using a stream.
       </p>
       <p class="m-2">
         The tag,
         <code class="bg-gray-100 text-red-600 font-mono text-sm p-1 rounded-md"
           >nodejs-sample</code
-        >, is applied to the uploaded asset. This tag is used to retrieve all
+        >, is applied to the uploaded video. This tag is used to retrieve all
         the media uploaded through this app, which you can view in the
         <a
           class="underline text-blue-500 hover:bg-blue-200 rounded-full transition duration-300"
           href="./gallery"
         >
-          Gallery
-        </a>
-        .
+          Gallery</a>.
       </p>
       <br />
       <form id="uploadForm" enctype="multipart/form-data">
@@ -48,7 +46,7 @@
           accept="video/*"
         />
         <button class="btn btn-primary" type="submit">
-          Upload Large Image/Video
+          Upload Video
         </button>
       </form>
       <section id="uploadResultSection">
