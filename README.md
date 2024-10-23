@@ -34,6 +34,10 @@ The frontend uses (Lit)[https://lit.dev/docs/v1/lit-html/introduction/] to provi
 
 Try uploading images and videos using each of the pages, then see them being displayed on the Gallery page.
 
+## Backend
+
+If you would like to explore how some backend specific API endpoints work, have a look at the `/upload-from-local` and `/upload-large-from-local` endpoints that both upload files from the local filesystem and not from the browser. (The browser upload examples are visible via the UI and are handled by the remaining endpoints)
+
 # Explore
 
 - Take a look at the source code to understand how it works.
