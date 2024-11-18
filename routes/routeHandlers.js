@@ -70,7 +70,7 @@ const listUploadedFiles = async (request, reply) => {
     // Apply transformations based on the type
     const transformedResources = combinedResources.map((resource) => {
       const transformation = [
-        { height: 400, width: 400, crop: 'fill' },
+        { height: 400, width: 400, crop: 'fill', gravity: 'auto' },
         { fetch_format: 'auto' },
         { quality: 'auto' },
       ];
